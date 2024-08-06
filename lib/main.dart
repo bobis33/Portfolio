@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'color_schemes.g.dart';
 import 'models/common.dart';
 import 'router.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
+Future<void> main() async {
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
     fallbackLocale: LangEnum.en_US.name,
     supportedLocales: <String>[LangEnum.en_US.name, LangEnum.fr_FR.name],
   );
 
+  setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     LocalizedApp(
       delegate,
@@ -42,6 +44,9 @@ class MainApp extends StatelessWidget {
         routerConfig: router,
         supportedLocales: localizationDelegate.supportedLocales,
         theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        themeMode: ThemeMode.system,
+
       ),
     );
   }

@@ -19,7 +19,7 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return const SafeArea(
-          child: HomePage(title: 'Home Page'),
+          child: HomePage(),
         );
       },
       routes: <RouteBase>[],
