@@ -3,8 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'color_schemes.g.dart';
 import 'models/common.dart';
+import 'color_schemes.g.dart';
 import 'router.dart';
 
 
@@ -46,7 +46,6 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         themeMode: ThemeMode.system,
-
       ),
     );
   }
