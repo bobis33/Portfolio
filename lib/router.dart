@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
           child: HomePage(),
         );
       },
-      routes: <RouteBase>[],
+      routes: const <RouteBase>[],
     ),
   ],
 );

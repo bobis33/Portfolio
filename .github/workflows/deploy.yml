@@ -1,0 +1,38 @@
+name: Deploy
+run-name: ${{github.actor}} | Deploy
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2.16.0
+        with:
+          channel: stable
+      - run: flutter pub get
+
+      - name: Build Web
+        run: flutter build web --release
+
+      - name: Push directory to another repository
+        uses: cpina/github-action-push-to-another-repository@v1.7.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: build/web
+          destination-github-username: 'bobis33'
+          destination-repository-name: 'bobis33.github.io'
+          target-branche: 'main'
