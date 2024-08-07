@@ -4,11 +4,15 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/router.dart';
 
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class ProjectsPage extends StatelessWidget {
+  const ProjectsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Welcome to my Portfolio!');
+    return const Column(
+      children: <Widget>[
+        Text('Projects'),
+      ],
+    );
   }
 }

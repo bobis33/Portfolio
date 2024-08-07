@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'widgets/main_layout.dart';
 import '/pages/home_page.dart';
+import '/pages/projects_page.dart';
 
 
 enum AppRoute {
+  projects(name: 'projects'),
   home(name: 'home');
 
   const AppRoute({required this.name});
@@ -19,10 +22,18 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return const SafeArea(
-          child: HomePage(),
+          child: MainLayout(child: HomePage()),
         );
       },
-      routes: const <RouteBase>[],
+    ),
+    GoRoute(
+      name: AppRoute.projects.name,
+      path: 'projects',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SafeArea(
+          child: MainLayout(child: ProjectsPage()),
+        );
+      },
     ),
   ],
 );
