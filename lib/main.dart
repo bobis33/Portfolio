@@ -5,8 +5,8 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'models/common.dart';
 import 'color_schemes.g.dart';
-import 'router.dart';
-
+import 'layouts/main_layout.dart';
+import 'sections_manager.dart';
 
 Future<void> main() async {
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
 
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
-      child: MaterialApp.router(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         locale: localizationDelegate.currentLocale,
         localizationsDelegates: const [
@@ -41,11 +41,13 @@ class MainApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        routerConfig: router,
         supportedLocales: localizationDelegate.supportedLocales,
         theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         themeMode: ThemeMode.system,
+        home: const SafeArea(
+          child: MainLayout(child: SectionsManager()),
+        ),
       ),
     );
   }

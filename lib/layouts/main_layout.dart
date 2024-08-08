@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:portfolio/router.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget child;
@@ -13,13 +11,14 @@ class MainLayout extends StatelessWidget {
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
-            context.goNamed(AppRoute.home.name);
+            //
           },
           child: const Text('My Portfolio'),
-        ),        actions: <Widget>[
+        ),
+        actions: <Widget>[
           TextButton(
             onPressed: () {
-              context.goNamed(AppRoute.projects.name);
+              //
             },
             child: const Text(
               'Projects',
@@ -28,7 +27,7 @@ class MainLayout extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.goNamed('/cv');
+              //
             },
             child: const Text(
               'CV',
@@ -37,7 +36,7 @@ class MainLayout extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.goNamed('/about');
+              //
             },
             child: const Text(
               'About Me',
@@ -46,7 +45,7 @@ class MainLayout extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.goNamed('/connect');
+              //
             },
             child: const Text(
               'Connect',
@@ -55,7 +54,7 @@ class MainLayout extends StatelessWidget {
           ),
         ],
       ),
-      body: child,
+      body: SingleChildScrollView(child: child),
     );
   }
 }
