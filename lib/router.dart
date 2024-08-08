@@ -28,7 +28,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       name: AppRoute.projects.name,
-      path: 'projects',
+      path: '/projects',
       builder: (BuildContext context, GoRouterState state) {
         return const SafeArea(
           child: MainLayout(child: ProjectsPage()),
