@@ -1,4 +1,5 @@
-[![Portfolio_CI](https://github.com/bobis33/Portfolio/actions/workflows/build.yml/badge.svg)](https://github.com/bobis33/Portfolio/actions/workflows/build.yml)
+[![Portfolio_build_CI](https://github.com/bobis33/Portfolio/actions/workflows/build.yml/badge.svg)](https://github.com/bobis33/Portfolio/actions/workflows/build.yml)
+[![Portfolio_deploy_CI](https://github.com/bobis33/Portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/bobis33/Portfolio/actions/workflows/deploy.yml)
 ![GitHub repo size](https://img.shields.io/github/repo-size/bobis33/Portfolio)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/bobis33/Portfolio/blob/main/LICENSE)
 
