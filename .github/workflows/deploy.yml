@@ -3,7 +3,7 @@ run-name: ${{github.actor}} | Deploy
 on:
   push:
     branches:
-      - production
+      - main
 
 jobs:
   build:
@@ -35,4 +35,4 @@ jobs:
           source-directory: build/web
           destination-github-username: 'bobis33'
           destination-repository-name: 'bobis33.github.io'
-          target-branche: 'main'
+          target-branch: 'main'
