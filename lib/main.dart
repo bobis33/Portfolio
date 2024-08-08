@@ -3,10 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'models/common.dart';
-import 'color_schemes.g.dart';
 import 'layouts/main_layout.dart';
-import 'sections_manager.dart';
+import 'models/common.dart';
+import 'sections/sections_manager.dart';
+import 'color_schemes.g.dart';
+import 'constants.dart';
 
 Future<void> main() async {
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
@@ -34,6 +35,7 @@ class MainApp extends StatelessWidget {
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
       child: MaterialApp(
+        title: appTitle,
         debugShowCheckedModeBanner: false,
         locale: localizationDelegate.currentLocale,
         localizationsDelegates: const [
