@@ -5,7 +5,9 @@ import '/sections/main_section.dart';
 
 
 class SectionsManager extends StatelessWidget {
-  const SectionsManager({super.key});
+  final List<GlobalKey> keys;
+
+  const SectionsManager({required this.keys, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,11 @@ class SectionsManager extends StatelessWidget {
       children: <Widget>[
         SizedBox(
           height: MediaQuery.of(context).size.height * 9 / 10,
-          child: const MainSection(),
+          child: MainSection(key: keys[0]),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 9 / 10,
-          child: const ProjectsSection(),
+          child: ProjectsSection(key: keys[1]),
         ),
       ],
     );

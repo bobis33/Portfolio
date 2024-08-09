@@ -1,21 +1,23 @@
 name: portfolio
-description: "Bobi's Portfolio"
+description: "Masina Elliot - My portfolio made in Flutter"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 0.0.0+1
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
 
 dependencies:
+  carousel_slider: ^5.0.0
+  cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_translate: ^4.0.4
-  cupertino_icons: ^1.0.6
+  font_awesome_flutter: ^10.7.0
+  url_launcher: ^6.0.6
   url_strategy: ^0.3.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -25,3 +27,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/i18n/
+    - assets/images/

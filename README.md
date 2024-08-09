@@ -10,19 +10,27 @@ Welcome to my Portfolio!
 This is a Flutter project that showcases my skills and projects. It is a web application that is hosted on GitHub Pages.
 
 
+# Prerequisites
+
+- [Dart](https://dart.dev/get-dart)
+- [Flutter](https://flutter.dev/docs/get-started/install)
+
+
 # Usage
+
+## Flutter dependencies
+
+```bash
+$> flutter pub get
+```
+
+## Build and run
 
 ```bash
 $> flutter build web --release
 [...]
 $> flutter run --release
 ```
-
-
-# Prerequisites
-
-- [Dart](https://dart.dev/get-dart)
-- [Flutter](https://flutter.dev/docs/get-started/install)
 
 
 # Commit Norms

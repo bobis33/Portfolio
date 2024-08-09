@@ -5,7 +5,6 @@ import 'package:url_strategy/url_strategy.dart';
 
 import '/layouts/main_layout.dart';
 import '/models/common.dart';
-import '/sections/sections_manager.dart';
 import 'color_schemes.g.dart';
 import 'constants.dart';
 
@@ -49,7 +48,7 @@ class MainApp extends StatelessWidget {
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         themeMode: ThemeMode.system,
         home: const SafeArea(
-          child: MainLayout(child: SectionsManager()),
+          child: MainLayout(),
         ),
       ),
     );
