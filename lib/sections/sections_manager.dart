@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'projects_section.dart';
-import 'main_section.dart';
+import '/sections/projects_section.dart';
+import '/sections/main_section.dart';
 
 
 class SectionsManager extends StatelessWidget {

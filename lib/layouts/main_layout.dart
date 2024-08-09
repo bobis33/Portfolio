@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '/widgets/navbar_text_button.dart';
+
+
 class MainLayout extends StatefulWidget {
   final Widget child;
 
@@ -34,42 +37,10 @@ class MainLayoutState extends State<MainLayout> {
           child: const Text('My Portfolio'),
         ),
         actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              //
-            },
-            child: const Text(
-              'Projects',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              //
-            },
-            child: const Text(
-              'CV',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              //
-            },
-            child: const Text(
-              'About Me',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              //
-            },
-            child: const Text(
-              'Connect',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+          navbarTextButton(context, 'Projects', () {}),
+          navbarTextButton(context, 'CV', () {}),
+          navbarTextButton(context, 'About Me', () {}),
+          navbarTextButton(context, 'Connect', () {}),
         ],
       ),
       body: SingleChildScrollView(

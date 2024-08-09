@@ -3,11 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'layouts/main_layout.dart';
-import 'models/common.dart';
-import 'sections/sections_manager.dart';
+import '/layouts/main_layout.dart';
+import '/models/common.dart';
+import '/sections/sections_manager.dart';
 import 'color_schemes.g.dart';
 import 'constants.dart';
+
 
 Future<void> main() async {
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
