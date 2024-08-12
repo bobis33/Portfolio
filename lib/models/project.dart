@@ -22,19 +22,19 @@ List<Project> getProjects() {
     ),
     Project(
       name: 'Arcade',
-      description: 'Arcade is a gaming platform: a program that lets the user choose a game to play and keeps a register of player scores. To be able to deal with the elements of your gaming plate-form at run-time, your graphics libraries and your games must be implemented as dynamic libraries, loaded at run-time. Each GUI available for the program must be used as a shared library that will be loaded and used dynamically by the main program.',
+      description: 'Arcade is a gaming platform. Games and graphical libraries are handled by dynamic libraries. The user can choose a graphical library and a game to play. Made in C++.',
       imageUrl: '',
       projectUrl: 'https://github.com/bobis33/Arcade',
     ),
     Project(
       name: 'RayTracer',
-      description: 'Ray tracing is a technique used to generate realistic digital images by simulating the inverse path of light. Goal of this project is to create a program able to generate an image from a file describing the scene.',
+      description: 'Ray tracing is a technique used to generate realistic digital images by simulating the inverse path of light. Goal of this project is to create a program able to generate an image from a file describing the scene. Made in C++.',
       imageUrl: '',
       projectUrl: 'https://github.com/bobis33/RayTracer',
     ),
     Project(
       name: 'MyFTP',
-      description: 'The goal of this project is to create a FTP server RFC959 compliant. The network communication will be achieved through the use of TCP sockets.',
+      description: 'The goal of this project is to create a FTP server RFC959 compliant. The network communication will be achieved through the use of TCP sockets. Made in C.',
       imageUrl: '',
       projectUrl: 'https://github.com/bobis33/MyFTP',
     ),
@@ -46,9 +46,16 @@ List<Project> getProjects() {
     ),
     Project(
       name: 'MiniShell',
-      description: 'The goal of this project is to create a simple shell(like TCSH or BASH).',
+      description: 'The goal of this project is to create a simple shell(like TCSH or BASH). Made in C.',
       imageUrl: '',
       projectUrl: 'https://github.com/bobis33/MiniShell',
     ),
+    Project(
+      name: 'Zappy',
+      description: 'The goal of this project is to create a network game. The game is a simulation of a world in which teams of players can move and communicate in real time. Players are AI controlled. Made in C/C++/Python.',
+      imageUrl: '',
+      projectUrl: 'https://github.com/bobis33/Zappy',
+    ),
   ];
 }
+
