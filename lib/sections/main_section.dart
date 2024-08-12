@@ -6,6 +6,6 @@ class MainSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Main Section'));
+    return const Center(child: Text('About me Section'));
   }
 }

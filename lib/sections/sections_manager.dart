@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '/sections/projects_section.dart';
 import '/sections/main_section.dart';
+import '/sections/cv_section.dart';
+import '/sections/connect_section.dart';
 
 
 class SectionsManager extends StatelessWidget {
@@ -11,17 +13,20 @@ class SectionsManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> sections = [
+      MainSection(key: keys[0]),
+      ProjectsSection(key: keys[1]),
+      CvSection(key: keys[2]),
+      ConnectSection(key: keys[3]),
+    ];
+
     return Column(
-      children: <Widget>[
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 9 / 10,
-          child: MainSection(key: keys[0]),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 9 / 10,
-          child: ProjectsSection(key: keys[1]),
-        ),
-      ],
+      children: sections.map((section) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: section,
+        );
+      }).toList(),
     );
   }
 }
