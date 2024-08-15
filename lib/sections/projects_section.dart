@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/widgets/text_button_icon.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '/models/project.dart';
 import '/widgets/card.dart';
+import '/utils/on_pressed_launch_url.dart';
 
 
 Widget projectContainer(BuildContext context, Project project, int index) {
@@ -53,23 +54,8 @@ Widget projectContainer(BuildContext context, Project project, int index) {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child: ElevatedButton.icon(
-              onPressed: () async {
-                final gitUrl = Uri.parse(project.projectUrl);
-                if (await canLaunchUrl(gitUrl)) {
-                  await launchUrl(gitUrl, mode: LaunchMode.externalApplication);
-                } else if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Could not launch ${project.projectUrl}')));
-                }
-              },
-              icon: const FaIcon(FontAwesomeIcons.github),
-              label: const Text('Source code'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                elevation: 10,
-              ),
-            ),
-          )
+            child: textButtonIcon(context, FontAwesomeIcons.github, const Text('Source code'), () { onPressedLaunchUrl(project.projectUrl, context); }),
+          ),
         ],
       ),
     ),
