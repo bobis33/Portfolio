@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/sections/projects_section.dart';
-import '/sections/main_section.dart';
+import '/sections/about_me_section.dart';
 import '/sections/cv_section.dart';
 import '/sections/connect_section.dart';
 
@@ -14,7 +14,7 @@ class SectionsManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> sections = [
-      MainSection(key: keys[0]),
+      AboutMeSection(key: keys[0]),
       ProjectsSection(key: keys[1]),
       CvSection(key: keys[2]),
       ConnectSection(key: keys[3]),

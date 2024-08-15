@@ -83,9 +83,9 @@ class MainLayoutState extends State<MainLayout> {
           // Background Image
           Positioned.fill(
             child: Opacity(
-              opacity: 0.05, // Ajustez la valeur entre 0.0 (complètement transparent) et 1.0 (complètement opaque)
+              opacity: 0.05,
               child: Image.asset(
-                'assets/images/bg.jpg', // Assurez-vous que l'image est bien dans les assets
+                'assets/images/bg.jpg',
                 fit: BoxFit.cover,
               ),
             ),
