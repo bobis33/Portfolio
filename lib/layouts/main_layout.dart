@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '/widgets/navbar_text_button.dart';
 import '/sections/sections_manager.dart';
 import '/utils/scroll.dart';
 
 
+Widget navbarTextButton(BuildContext context, String text, void Function() onPressed) {
+  return TextButton(
+    style: TextButton.styleFrom(
+      foregroundColor: Theme.of(context).colorScheme.onSurface,
+    ),
+    onPressed: onPressed,
+    child: Text(text),
+  );
+}
+
 AppBar header(BuildContext context, ScrollController scrollController, List<GlobalKey> keys) {
   return AppBar(
+    backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.5),
     title: GestureDetector(
       onTap: () {
         scrollController.animateTo(
@@ -18,22 +28,23 @@ AppBar header(BuildContext context, ScrollController scrollController, List<Glob
       child: const Text('My Portfolio'),
     ),
     actions: <Widget>[
-      navbarTextButton(context, 'About Me', () {scrollToSection(scrollController, keys[0]);}),
-      navbarTextButton(context, 'Projects', () {scrollToSection(scrollController, keys[1]);}),
-      navbarTextButton(context, 'CV', () {scrollToSection(scrollController, keys[2]);}),
-      navbarTextButton(context, 'Connect', () {scrollToSection(scrollController, keys[3]);}),
+      navbarTextButton(context, 'About Me', () { scrollToSection(scrollController, keys[0]); }),
+      navbarTextButton(context, 'Projects', () { scrollToSection(scrollController, keys[1]); }),
+      navbarTextButton(context, 'CV', () { scrollToSection(scrollController, keys[2]); }),
+      navbarTextButton(context, 'Connect', () { scrollToSection(scrollController, keys[3]); }),
     ],
   );
 }
 
 Widget footer(BuildContext context) {
   return Container(
-    color: Theme.of(context).colorScheme.surfaceTint.withOpacity(0.1),
     padding: const EdgeInsets.all(20.0),
-    child: const Row(
+    child: const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('© 2024 My Portfolio', style: TextStyle(fontSize: 16)),
+        Text('Made with Flutter.', style: TextStyle(fontSize: 16)),
         SizedBox(height: 10),
+        Text('This project is under the MIT licence.', style: TextStyle(fontSize: 12)),
       ],
     ),
   );
@@ -67,14 +78,30 @@ class MainLayoutState extends State<MainLayout> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: header(context, _scrollController, keys),
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          children: <Widget>[
-            SectionsManager(keys: [_mainSectionKey, _projectsSectionKey, _cvSectionKey, _connectSectionKey]),
-            footer(context),
-          ],
-        )
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.05, // Ajustez la valeur entre 0.0 (complètement transparent) et 1.0 (complètement opaque)
+              child: Image.asset(
+                'assets/images/bg.jpg', // Assurez-vous que l'image est bien dans les assets
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          // Scrollable Content
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: <Widget>[
+                SectionsManager(keys: [_mainSectionKey, _projectsSectionKey, _cvSectionKey, _connectSectionKey]),
+                footer(context),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
