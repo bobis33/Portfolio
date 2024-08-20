@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '/utils/on_pressed_launch_url.dart';
+import '/widgets/text_button_icon.dart';
 
 
 Widget keyFactWidget(BuildContext context, IconData icon, String label, String value) {
@@ -85,7 +89,7 @@ class AboutMeSectionState extends State<AboutMeSection> with SingleTickerProvide
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 50),
+          const SizedBox(height: 100),
           FadeTransition(
             opacity: _fadeAnimation,
             child: SlideTransition(
@@ -134,6 +138,18 @@ class AboutMeSectionState extends State<AboutMeSection> with SingleTickerProvide
                   keyFactWidget(context, Icons.star, 'Hobbies', '[Hobby 1, Hobby 2]'),
                   const SizedBox(height: 10),
                   keyFactWidget(context, Icons.build, 'Favorite Tool', '[e.g., "VS Code"]'),
+                  const SizedBox(height: 40),
+                  textButtonIcon(
+                    context,
+                    FontAwesomeIcons.file,
+                    const Text('View My CV'),
+                        () {
+                      onPressedLaunchUrl(
+                        'https://drive.google.com/file/d/1XOvKXOhw1RCmHDHXz86t7P172Ap2gyuI/view?usp=drive_link',
+                        context,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

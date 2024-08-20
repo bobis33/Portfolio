@@ -18,16 +18,6 @@ Widget projectContainer(BuildContext context, Project project, int index) {
     Container(
       width: contextSize.width,
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(project.imageUrl),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            Colors.transparent.withOpacity(0.2),
-            BlendMode.dstATop,
-          ),
-        ),
-      ),
       child: Column(
         children: <Widget>[
           Padding(
