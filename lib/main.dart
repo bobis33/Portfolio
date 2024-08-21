@@ -5,7 +5,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 import '/layouts/main_layout.dart';
 import '/models/common.dart';
-import 'style/color_schemes.g.dart';
+import 'styles/color_schemes.g.dart';
 import 'constants.dart';
 
 

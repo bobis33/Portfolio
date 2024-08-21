@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '/sections/projects_section.dart';
 import '/sections/about_me_section.dart';
-import '/sections/connect_section.dart';
+import '/sections/projects_section.dart';
+import '/sections/welcome_section.dart';
 
 
 class SectionsManager extends StatelessWidget {
@@ -13,9 +13,9 @@ class SectionsManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> sections = [
-      AboutMeSection(key: keys[0]),
-      ProjectsSection(key: keys[1]),
-      ConnectSection(key: keys[3]),
+      WelcomeSection(key: keys[0], secondKey: keys[1]),
+      AboutMeSection(key: keys[1]),
+      ProjectsSection(key: keys[2]),
     ];
 
     return Column(

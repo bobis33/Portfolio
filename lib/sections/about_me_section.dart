@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/models/social.dart';
+import 'package:portfolio/widgets/text_button_icon.dart';
+import 'dart:html' as html;
 
+import '/models/profile.dart';
 import '/utils/on_pressed_launch_url.dart';
-import '/widgets/text_button_icon.dart';
-
 
 Widget keyFactWidget(BuildContext context, IconData icon, String label, String value) {
   return Row(
@@ -13,149 +15,122 @@ Widget keyFactWidget(BuildContext context, IconData icon, String label, String v
       const SizedBox(width: 10),
       Text(
         '$label: ',
+        style: const TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
       ),
       Text(
         value,
+        style: const TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
       ),
     ],
   );
 }
 
-class AboutMeSection extends StatefulWidget {
-  const AboutMeSection({super.key});
+class AboutMeSection extends StatelessWidget {
+  AboutMeSection({super.key});
 
-  @override
-  AboutMeSectionState createState() => AboutMeSectionState();
-}
-
-class AboutMeSectionState extends State<AboutMeSection> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _rotationAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    );
-
-    _fadeAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    );
-
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.5),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
-    _scaleAnimation = Tween<double>(
-      begin: 0.8,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
-    _rotationAnimation = Tween<double>(
-      begin: -0.05,
-      end: 0.0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  final Profile profile = getProfile();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 100),
-          FadeTransition(
-            opacity: _fadeAnimation,
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: const Text(
-                'Hello, I\'m Elliot Masina / Bobis33 👋',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          ScaleTransition(
-            scale: _scaleAnimation,
-            child: RotationTransition(
-              turns: _rotationAnimation,
-              child: const CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage('assets/images/profile.png'),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          FadeTransition(
-            opacity: _fadeAnimation,
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: const Text(
-                'I am currently in my third year at Efrei engineering school, working in an apprenticeship. '
-                    'I specialize in software development and have a passion for low-level programming languages like C and C++. '
-                    'I love creating intuitive and dynamic applications, transforming complex ideas into simple, user-friendly solutions.\n\n'
-                    'When I\'m not coding, I enjoy [mention hobbies or interests]. '
-                    'My work is driven by deep curiosity and a desire to push the boundaries of what is possible in the digital world.',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          FadeTransition(
-            opacity: _fadeAnimation,
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: Column(
-                children: [
-                  keyFactWidget(context, Icons.code, 'Experience', '3 years'),
-                  const SizedBox(height: 10),
-                  keyFactWidget(context, Icons.star, 'Hobbies', '[Hobby 1, Hobby 2]'),
-                  const SizedBox(height: 10),
-                  keyFactWidget(context, Icons.build, 'Favorite Tool', '[e.g., "VS Code"]'),
-                  const SizedBox(height: 40),
-                  textButtonIcon(
-                    context,
-                    FontAwesomeIcons.file,
-                    const Text('View My CV'),
-                        () {
-                      onPressedLaunchUrl(
-                        'https://drive.google.com/file/d/1XOvKXOhw1RCmHDHXz86t7P172Ap2gyuI/view?usp=drive_link',
-                        context,
-                      );
-                    },
+        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height / 4),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        profile.introduction,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Text(
+                        profile.description,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          textButtonIcon(
+                            context,
+                            const FaIcon(FontAwesomeIcons.file),
+                            const Text('View My CV'),
+                                () {
+                              html.window.open(profile.cvUrl, '_blank');
+                            },
+                          ),
+                          textButtonIcon(
+                            context,
+                            const FaIcon(FontAwesomeIcons.download),
+                            const Text('Download My CV'),
+                                () {
+                              html.AnchorElement(href: profile.cvUrl)
+                                ..setAttribute('download', 'CV_ELLIOT_MASINA.pdf')
+                                ..click();
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(width: 30),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(profile.imageUrl),
+                        radius: 60,
+                        minRadius: 40,
+                        maxRadius: 60,
+                      ),
+                      const SizedBox(height: 50),
+                      Wrap(
+                        runSpacing: 20,
+                        children: getSocialLinks().map((socialLink) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: textButtonIcon(
+                                    context,
+                                    FaIcon(socialLink.icon, color: socialLink.color),
+                                    Text(socialLink.label),
+                                        () {onPressedLaunchUrl(socialLink.url, context);}
+                                ),
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
 }

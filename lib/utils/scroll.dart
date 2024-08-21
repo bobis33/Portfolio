@@ -10,7 +10,7 @@ void scrollToSection(ScrollController scrollController, GlobalKey key) {
   scrollController.animateTo(
     targetOffset.clamp(
         0.0, scrollController.position.maxScrollExtent),
-    duration: const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 800),
     curve: Curves.ease,
   );
 }

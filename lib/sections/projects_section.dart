@@ -4,8 +4,8 @@ import 'package:portfolio/widgets/text_button_icon.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '/models/project.dart';
-import '/widgets/card.dart';
 import '/utils/on_pressed_launch_url.dart';
+import '/widgets/card.dart';
 
 
 Widget projectContainer(BuildContext context, Project project, int index) {
@@ -44,7 +44,7 @@ Widget projectContainer(BuildContext context, Project project, int index) {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child: textButtonIcon(context, FontAwesomeIcons.github, const Text('Source code'), () { onPressedLaunchUrl(project.projectUrl, context); }),
+            child: textButtonIcon(context, const FaIcon(FontAwesomeIcons.github), const Text('Source code'), () { onPressedLaunchUrl(project.projectUrl, context); }),
           ),
         ],
       ),
@@ -53,39 +53,42 @@ Widget projectContainer(BuildContext context, Project project, int index) {
 }
 
 class ProjectsSection extends StatelessWidget {
-  const ProjectsSection({super.key});
+  ProjectsSection({super.key});
+
+  final List<Project> projects = getProjects();
 
   @override
   Widget build(BuildContext context) {
-    List<Project> projects = getProjects();
-
-    return Column(
-      children: <Widget>[
-        const Text('Projects Section'),
-        CarouselSlider(
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * 6 / 10,
-            aspectRatio: 16 / 9,
-            viewportFraction: 0.6,
-            initialPage: 0,
-            enableInfiniteScroll: true,
-            reverse: false,
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 6),
-            autoPlayAnimationDuration: const Duration(milliseconds: 1200),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enlargeCenterPage: true,
-            scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 4),
+      child: Column(
+        children: <Widget>[
+          const Text('Projects Section'),
+          CarouselSlider(
+            options: CarouselOptions(
+              height: MediaQuery.of(context).size.height * 6 / 10,
+              aspectRatio: 16 / 9,
+              viewportFraction: 0.6,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 6),
+              autoPlayAnimationDuration: const Duration(milliseconds: 1200),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              scrollDirection: Axis.horizontal,
+            ),
+            items: projects.map((project) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return projectContainer(context, project, projects.indexOf(project));
+                },
+              );
+            }).toList(),
           ),
-          items: projects.map((project) {
-            return Builder(
-              builder: (BuildContext context) {
-                return projectContainer(context, project, projects.indexOf(project));
-              },
-            );
-          }).toList(),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
