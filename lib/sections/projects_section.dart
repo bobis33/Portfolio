@@ -13,44 +13,47 @@ Widget projectContainer(BuildContext context, Project project, int index) {
 
   return card(
     context,
-    contextSize.width,
-    contextSize.height * 6 / 10,
-    Container(
-      width: contextSize.width,
-      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: Column(
+    contextSize.width / 2.4,
+    contextSize.height / 1.8,
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child:     Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Text(
-              project.name,
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+          const SizedBox(height: 20),
+          Text(
+            project.name,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 400),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Text(
-                project.description,
-                style: const TextStyle(fontSize: 16.0),
-                textAlign: TextAlign.center,
-              ),
-            ),
+          SizedBox(height: contextSize.height / 20),
+          Expanded(
+              child: SingleChildScrollView(
+                child:           ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: Text(
+                    project.description,
+                    style: const TextStyle(fontSize: 16.0),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
           ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: textButtonIcon(context, const FaIcon(FontAwesomeIcons.github), const Text('Source code'), () { onPressedLaunchUrl(project.projectUrl, context); }),
+          const SizedBox(height: 20),
+          textButtonIcon(
+              context,
+              const FaIcon(FontAwesomeIcons.github),
+              const Text('Source code'),
+                  () { onPressedLaunchUrl(project.projectUrl, context); }
           ),
+          const SizedBox(height: 5),
         ],
       ),
-    ),
+    )
   );
 }
+
 
 class ProjectsSection extends StatelessWidget {
   ProjectsSection({super.key});
