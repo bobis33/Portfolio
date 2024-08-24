@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:portfolio/styles/text_themes.g.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import '/layouts/main_layout.dart';
@@ -44,9 +45,7 @@ class MainApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: localizationDelegate.supportedLocales,
-        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-        themeMode: ThemeMode.system,
+        theme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme, textTheme: textTheme),
         home: const SafeArea(
           child: MainLayout(),
         ),

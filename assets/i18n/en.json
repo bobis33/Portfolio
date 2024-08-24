@@ -1,3 +1,19 @@
 {
-  "wrongEmailOrPassword": "Your email or password is invalid."
+  "aboutMe": "About me",
+  "changeLanguage": "Change language",
+  "dlCV": "Download my CV",
+  "en": "English",
+  "fr": "French",
+  "helloAndWelcome": "Hello and welcome to my portfolio!",
+  "languages&tools": "Languages & Tools:",
+  "madeWithFlutter": "Made with Flutter",
+  "myProjects": "My projects",
+  "myProjects.subtitle": "A showcase of my recent work",
+  "profile.description": "My name is Elliot Masina, I'm 24 years old, and I'm currently in my third year at EFREI.\nI've always been passionate about computer science, with a particular interest in development, especially in low-level languages like C and C++.\nMy journey has also led me to delve into the field of cybersecurity, where I regularly participate in CTF (Capture The Flag) competitions to hone my skills.\n\nIn addition, I have a strong passion for graphics programming, whether it's for game development or 3D modeling.\nI've had the opportunity to create a graphics engine in C++ using Vulkan, an experience that allowed me to push my technical boundaries.\nCurrently, I'm working on a real-time strategy (RTS) game project with Unreal Engine in C++, a challenge I approach with both enthusiasm and precision.",
+  "profile.introduction": "Hello, I'm Elliot Masina / Bobis33",
+  "projects": "Projects",
+  "scrollDown": "Scroll down to learn more",
+  "selectLanguage": "Select a language",
+  "sourceCode": "Source code",
+  "viewCV": "View my CV"
 }

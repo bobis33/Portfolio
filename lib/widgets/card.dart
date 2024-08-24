@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 
-Widget card(BuildContext context, double width, double height, Widget child) {
+Widget card(double width, double height, Widget child) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(

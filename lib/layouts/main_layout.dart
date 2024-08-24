@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+import 'package:portfolio/models/common.dart';
 
 import '/models/social.dart';
 import '/sections/sections_manager.dart';
@@ -8,10 +10,36 @@ import '/utils/scroll.dart';
 import '/widgets/text_button_icon.dart';
 
 
+Widget gradientAlertDialog(BuildContext context, List<Widget> actions) {
+  return Dialog(
+    elevation: 0,
+    child: Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.transparent),
+        gradient: const LinearGradient(
+          colors: [Colors.blueAccent, Colors.purpleAccent],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ...actions,
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 Widget navbarTextButton(BuildContext context, String text, void Function() onPressed) {
   return TextButton(
     style: TextButton.styleFrom(
-      foregroundColor: Theme.of(context).colorScheme.onSurface,
+      foregroundColor: Colors.white,
     ),
     onPressed: onPressed,
     child: Text(text),
@@ -29,11 +57,58 @@ AppBar header(BuildContext context, ScrollController scrollController, List<Glob
           curve: Curves.ease,
         );
       },
-      child: const Text('Elliot Masina'),
+      child: const Text('Elliot Masina', style: TextStyle(color: Colors.white)),
     ),
     actions: <Widget>[
-      navbarTextButton(context, 'About Me', () { scrollToSection(scrollController, keys[1]); }),
-      navbarTextButton(context, 'Projects', () { scrollToSection(scrollController, keys[2]); }),
+      navbarTextButton(context, translate('aboutMe'), () { scrollToSection(scrollController, keys[1]); }),
+      navbarTextButton(context, translate('projects'), () { scrollToSection(scrollController, keys[2]); }),
+      Theme(
+        data: Theme.of(context).copyWith(
+          popupMenuTheme: PopupMenuThemeData(
+            color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.5),
+          ),
+        ),
+        child: PopupMenuButton<String>(
+          elevation: 0,
+          offset: const Offset(0, 48),
+          tooltip: '',
+          icon: const Icon(Icons.settings),
+          onSelected: (value) {
+            if (value == 'language') {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return gradientAlertDialog(
+                    context,
+                    <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          changeLocale(context, LangEnum.en_US.name);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(translate('en')),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          changeLocale(context, LangEnum.fr_FR.name);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(translate('fr')),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+            PopupMenuItem<String>(
+              value: 'language',
+              child: Text(translate('changeLanguage')),
+            ),
+          ],
+        ),
+      ),
     ],
   );
 }
@@ -44,7 +119,7 @@ Widget footer(BuildContext context) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Made with Flutter.', style: TextStyle(fontSize: 16)),
+        Text(translate('madeWithFlutter'), style: Theme.of(context).textTheme.labelLarge),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +131,7 @@ Widget footer(BuildContext context) {
                 textButtonIcon(
                     context,
                     FaIcon(socialLink.icon, color: socialLink.color, size: 15),
-                    Text(socialLink.label, style: const TextStyle(fontSize: 10)),
+                    Text(socialLink.label, style: Theme.of(context).textTheme.labelMedium),
                         () { onPressedLaunchUrl(socialLink.url, context); }
                 ),
               ],

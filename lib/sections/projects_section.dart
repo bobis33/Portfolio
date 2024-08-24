@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/widgets/text_button_icon.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,11 +9,8 @@ import '/utils/on_pressed_launch_url.dart';
 import '/widgets/card.dart';
 
 
-Widget projectContainer(BuildContext context, Project project, int index) {
-  final Size contextSize = MediaQuery.of(context).size;
-
+Widget projectContainer(BuildContext context, Project project, Size contextSize) {
   return card(
-    context,
     contextSize.width / 2.4,
     contextSize.height / 1.8,
     Padding(
@@ -22,19 +20,16 @@ Widget projectContainer(BuildContext context, Project project, int index) {
           const SizedBox(height: 20),
           Text(
             project.name,
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           SizedBox(height: contextSize.height / 20),
           Expanded(
               child: SingleChildScrollView(
-                child:           ConstrainedBox(
+                child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 400),
                   child: Text(
                     project.description,
-                    style: const TextStyle(fontSize: 16.0),
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -43,8 +38,8 @@ Widget projectContainer(BuildContext context, Project project, int index) {
           const SizedBox(height: 20),
           textButtonIcon(
               context,
-              const FaIcon(FontAwesomeIcons.github),
-              const Text('Source code'),
+              const FaIcon(FontAwesomeIcons.github, color: Color(0xFF24292E)),
+              Text(translate('sourceCode'), style: Theme.of(context).textTheme.labelLarge),
                   () { onPressedLaunchUrl(project.projectUrl, context); }
           ),
           const SizedBox(height: 5),
@@ -54,7 +49,6 @@ Widget projectContainer(BuildContext context, Project project, int index) {
   );
 }
 
-
 class ProjectsSection extends StatelessWidget {
   ProjectsSection({super.key});
 
@@ -62,14 +56,20 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size contextSize = MediaQuery.of(context).size;
+
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 4),
+      padding: EdgeInsets.only(bottom: contextSize.height / 4),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text('Projects Section'),
+          Text(translate('myProjects'), style: Theme.of(context).textTheme.headlineLarge),
+          const SizedBox(height: 10),
+          Text(translate('myProjects.subtitle'), style: Theme.of(context).textTheme.bodyLarge),
+          const SizedBox(height: 30),
           CarouselSlider(
             options: CarouselOptions(
-              height: MediaQuery.of(context).size.height * 6 / 10,
+              height: contextSize.height * 6 / 10,
               aspectRatio: 16 / 9,
               viewportFraction: 0.6,
               initialPage: 0,
@@ -85,7 +85,7 @@ class ProjectsSection extends StatelessWidget {
             items: projects.map((project) {
               return Builder(
                 builder: (BuildContext context) {
-                  return projectContainer(context, project, projects.indexOf(project));
+                  return projectContainer(context, project, contextSize);
                 },
               );
             }).toList(),

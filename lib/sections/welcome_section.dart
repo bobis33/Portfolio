@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -49,6 +50,9 @@ class WelcomeSectionState extends State<WelcomeSection> with SingleTickerProvide
 
   @override
   Widget build(BuildContext context) {
+
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return SizedBox(
       width: double.infinity,
       height: MediaQuery.of(context).size.height,
@@ -60,13 +64,9 @@ class WelcomeSectionState extends State<WelcomeSection> with SingleTickerProvide
             opacity: _fadeInAnimation,
             child: SlideTransition(
               position: _slideUpAnimation,
-              child: const Text(
-                'Hello and Welcome to my Portfolio!',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+              child: Text(
+                translate('helloAndWelcome'),
+                style: textTheme.headlineLarge,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -91,12 +91,8 @@ class WelcomeSectionState extends State<WelcomeSection> with SingleTickerProvide
             opacity: _fadeInAnimation,
             child: SlideTransition(
               position: _slideUpAnimation,
-              child: const Text(
-                'Scroll down to learn more about me',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
+              child: Text(translate('scrollDown'),
+                  style: textTheme.bodyLarge
               ),
             ),
           ),
