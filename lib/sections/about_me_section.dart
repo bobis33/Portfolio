@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio/models/social.dart';
-import 'package:portfolio/widgets/text_button_icon.dart';
 import 'dart:html' as html;
 
 import '/models/profile.dart';
+import '/models/social.dart';
 import '/utils/on_pressed_launch_url.dart';
+import '/widgets/text_button_icon.dart';
 
 
 Widget leftSide(BuildContext context, Profile profile) {
@@ -38,7 +38,7 @@ Widget leftSide(BuildContext context, Profile profile) {
                 style: textTheme.labelLarge,
               ),
                   () {
-                html.window.open(profile.cvUrl, '_blank');
+                onPressedLaunchUrl('https://bobis33.github.io/${profile.cvUrl}', context);
               },
             ),
             const SizedBox(width: 10),

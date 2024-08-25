@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio/widgets/text_button_icon.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '/models/project.dart';
 import '/utils/on_pressed_launch_url.dart';
 import '/widgets/card.dart';
+import '/widgets/text_button_icon.dart';
 
 
 Widget projectContainer(BuildContext context, Project project, Size contextSize) {
